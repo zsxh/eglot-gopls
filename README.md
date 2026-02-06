@@ -4,6 +4,10 @@
 
 Enhanced integration between [gopls](https://github.com/golang/tools/tree/master/gopls) (the Go language server) and [Eglot](https://github.com/joaotavora/eglot) (the Emacs LSP client).
 
+## Screenshot
+
+![Image](https://github.com/user-attachments/assets/8ec9a401-1987-4642-b66a-9f2b43cdaa13)
+
 ## Features
 
 This package enhances the following gopls codelens commands:

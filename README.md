@@ -6,7 +6,7 @@ Enhanced integration between [gopls](https://github.com/golang/tools/tree/master
 
 ## Screenshot
 
-![Image](https://github.com/user-attachments/assets/8ec9a401-1987-4642-b66a-9f2b43cdaa13)
+<img src="https://github.com/user-attachments/assets/8ec9a401-1987-4642-b66a-9f2b43cdaa13" width=70% height=70%>
 
 ## Features
 

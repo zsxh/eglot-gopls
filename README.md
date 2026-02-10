@@ -8,7 +8,7 @@ Enhanced integration between [gopls](https://github.com/golang/tools/tree/master
 
 <img src="https://raw.githubusercontent.com/zsxh/eglot-gopls/assets/eglot-gopls-screenshot.webp" width=70% height=70%>
 
-https://raw.githubusercontent.com/zsxh/eglot-gopls/assets/eglot-gopls-demo.mp4
+https://github.com/user-attachments/assets/fd0247dd-3d8b-41a1-b703-46fd41a92229
 
 ## Features
 

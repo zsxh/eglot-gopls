@@ -16,7 +16,21 @@ This package enhances the following gopls codelens commands:
   - Runs specific tests via `go test -run` or benchmarks via `go test -bench`
   - Output is parsed automatically, allowing `next-error` to jump to failures
 
-- **`gopls.run_govulncheck` / `gopls.vulncheck`** - Run vulnerability checking on Go dependencies
+- **`go.test.cursor`** / **`go.benchmark.cursor`** - Run individual tests or benchmarks
+
+- **`go.debug.cursor`** - Debug tests and benchmarks using [dape](https://github.com/vavida/dape)
+  - Requires [dape](https://github.com/vavida/dape) to be installed
+  - Automatically registers the `go-debug-test` dape adapter for seamless debugging
+
+- **`gopls.run_govulncheck`** / **`gopls.vulncheck`** - Run vulnerability checking on Go dependencies
+
+### Codelens Transformation
+
+When [eglot-codelens](https://github.com/zsxh/eglot-codelens) is available, this package transforms "run test" and "run benchmark" code lenses into pairs:
+
+- `go.test.cursor` / `go.benchmark.cursor` - for running the test/benchmark
+
+- `go.debug.cursor` - for debugging the test/benchmark with dape
 
 ## Installation
 
@@ -66,25 +80,35 @@ For custom [gopls setting](https://github.com/golang/tools/blob/master/gopls/doc
                               :run_govulncheck t))))
 ```
 
-#### Custom vulnerability database
-
 To use a custom vulnerability database, set `eglot-gopls-vulncheck-db`
 
 ```elisp
 (setq eglot-gopls-vulncheck-db "https://vuln.go.dev")
 ```
 
+To pass environment variables to the debugger when debugging tests:
+
+```elisp
+;; Buffer-local environment variables for debugging tests
+(setq eglot-gopls-test-env-vars '(:KEY "value" :ANOTHER_KEY "another_value"))
+```
+
 ## Requirements
 
 - Emacs 30.1+
 - [eglot](https://github.com/joaotavora/eglot) 1.17.30+
-- [eglot-codelens](https://github.com/zsxh/eglot-codelens) (optional)
+- [eglot-codelens](https://github.com/zsxh/eglot-codelens) (optional, for codelens ui)
+- [dape](https://github.com/vavida/dape) (optional, for debugging tests)
 - [gopls](https://pkg.go.dev/golang.org/x/tools/gopls)
-- [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) (optional)
+- [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) (optional, for vulnerability checking)
+
+## TODOs
+
+- [ ] Support testify suite debugging
 
 ## License
 
-Copyright (C) 2026 zsxh
+Copyright (C) 2026 Zsxh Chen
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

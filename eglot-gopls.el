@@ -5,7 +5,7 @@
 ;; Author: Zsxh Chen <bnbvbchen@gmail.com>
 ;; Maintainer: Zsxh Chen <bnbvbchen@gmail.com>
 ;; URL: https://github.com/zsxh/eglot-gopls
-;; Version: 0.0.1
+;; Version: 0.1.0
 ;; Package-Requires: ((emacs "30.1") (compat "30.1.0.0") (eglot "1.17.30"))
 ;; Keywords: eglot tools
 
@@ -137,15 +137,15 @@ Specialized compilation mode for parsing Go test with error regex patterns."
   "Return non-nil if VEC is a non-empty vector."
   (eglot-gopls--vector-length> vec 0))
 
-(defun eglot-gopls--vector-first-item (vec)
-  "Return the first item of VEC, or nil if VEC is empty or not a vector."
-  (eglot-gopls--vector-idx-item vec 0))
-
 (defun eglot-gopls--vector-idx-item (vec idx)
   "Return the item at index IDX of VEC, or nil if IDX is out of bounds."
   (and (integerp idx) (>= idx 0)
        (eglot-gopls--vector-length> vec idx)
        (aref vec idx)))
+
+(defun eglot-gopls--vector-first-item (vec)
+  "Return the first item of VEC, or nil if VEC is empty or not a vector."
+  (eglot-gopls--vector-idx-item vec 0))
 
 (defun eglot-gopls--run-tests (arguments)
   "Execute gopls `gopls.run_tests' codelens action.
@@ -267,16 +267,16 @@ ARGUMENTS is a vector, [(:URI :Pattern) ...]."
                        (:Pattern _)) args)
                  (dir (file-name-directory (eglot-uri-to-path uri)))
                  (db eglot-gopls-vulncheck-db)
-                 (proj (project-current))
-                 (default-directory (when proj (project-root proj))))
+                 (proj (project-current)))
       (when (and dir proj)
-        (compile
-         (format
-          "govulncheck -json -mode source -scan symbol %s %s && govulncheck %s ./..."
-          (concat "-C " dir)
-          (if db (concat " -db " (shell-quote-argument db)) "")
-          (concat "-C " dir))
-         'eglot-gopls-compilation-mode)))))
+        (let ((default-directory (project-root proj)))
+          (compile
+           (format
+            "govulncheck -json -mode source -scan symbol %s %s && govulncheck %s ./..."
+            (concat "-C " dir)
+            (if db (concat " -db " (shell-quote-argument db)) "")
+            (concat "-C " dir))
+           'eglot-gopls-compilation-mode))))))
 
 (defun eglot-gopls--create-test-codelens (lens)
   "Create test code lenses from LENS.

@@ -1,7 +1,7 @@
 ;; -*- mode: eask; lexical-binding: t -*-
 
 (package "eglot-gopls"
-         "0.0.1"
+         "0.1.0"
          "Go gopls integration with eglot")
 
 (website-url "https://github.com/zsxh/eglot-gopls")

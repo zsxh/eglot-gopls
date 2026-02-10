@@ -6,7 +6,9 @@ Enhanced integration between [gopls](https://github.com/golang/tools/tree/master
 
 ## Screenshot
 
-<img src="https://github.com/user-attachments/assets/8ec9a401-1987-4642-b66a-9f2b43cdaa13" width=70% height=70%>
+<img src="https://raw.githubusercontent.com/zsxh/eglot-gopls/assets/eglot-gopls-screenshot.webp" width=70% height=70%>
+
+https://raw.githubusercontent.com/zsxh/eglot-gopls/assets/eglot-gopls-demo.mp4
 
 ## Features
 

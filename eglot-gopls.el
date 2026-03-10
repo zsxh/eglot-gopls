@@ -554,7 +554,7 @@ Returns nil if FUNCS is nil or empty."
         regexp))))
 
 (defun eglot-gopls--test-command (test-config)
-  "Build the command list for running Go tests or benchmarks.
+  "Build the command list for running Go test or benchmark.
 
 TEST-CONFIG is a map with:
 - :test-fns - list of function names to run (nil for all)
@@ -719,7 +719,7 @@ ARGS is a vector containing a map with :functionName key."
      (t nil))))
 
 (defun eglot-gopls--test-current-package (&optional benchmark-p)
-  "Run all tests or benchmarks in the current package.
+  "Run all test or benchmark in the current package.
 
 BENCHMARK-P is non-nil to run benchmarks instead of tests.
 Enables code coverage for the package run."
@@ -733,7 +733,7 @@ Enables code coverage for the package run."
     (compile cmd 'eglot-gopls-compilation-mode)))
 
 (defun eglot-gopls--test-current-file (&optional benchmark-p)
-  "Run all tests or benchmarks in the current file.
+  "Run all test or benchmark in the current file.
 
 BENCHMARK-P is non-nil to run benchmarks instead of tests.
 Only runs functions found in the current buffer's document symbols."

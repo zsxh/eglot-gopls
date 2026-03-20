@@ -669,7 +669,7 @@ Requires dape.el to be installed."
                       :request "launch"
                       :mode "test"
                       :program "."
-                      :args ,(apply #'vector args)
+                      :args ,(vconcat args)
                       :buildFlags ,(mapconcat #'identity build-flags " ")
                       :env ,(or eglot-gopls-test-env-vars
                                 (make-hash-table :size 0)))))
@@ -944,8 +944,7 @@ Otherwise returns CODELENS unchanged."
       (let ((trans-lens (eglot-gopls--transform-codelens codelens))
             (pkg-lens (eglot-gopls--package-codelens))
             (func-lens (eglot-gopls--func-codelens)))
-        (apply #'vector
-               (append pkg-lens trans-lens func-lens)))
+        (vconcat pkg-lens trans-lens func-lens))
     codelens))
 
 ;; eglot-codelens is an optional dependency for enhanced code lens support

@@ -951,7 +951,7 @@ Otherwise returns CODELENS unchanged."
 ;; eglot-codelens is an optional dependency for enhanced code lens support
 (when (require 'eglot-codelens nil 'noerror)
   (cl-defmethod eglot-codelens-provide-codelens :around
-    ((_server eglot-gopls-server) codelens)
+    ((_server eglot-gopls-server) codelens _uri)
     "Provide enhanced codelenses for Go test files.
 
 Delegates to `eglot-gopls--provide-codelens' which augments CODELENS with
